@@ -10,35 +10,35 @@ app.use(bodyParser.json());
 app.get('/contactlist', function(req,res)
 	   {
 	console.log("I received a get request");
-	
-//	
+
+//
 //	person1 ={
 //		name: 'akshay',
 //		email: 'akshaysjk@gmail.com',
-//		number: '(111) 111 1111'	
+//		number: '(111) 111 1111'
 //	};
 //		person2 ={
 //		name: 'aadesh',
 //		email: 'aadesh@gmail.com',
-//		number: '(111) 111 1111'	
+//		number: '(111) 111 1111'
 //	};
-//	
+//
 //		person3 ={
 //		name: 'vinay',
 //		email: 'vinay@gmail.com',
-//		number: '(333) 333 3333'	
+//		number: '(333) 333 3333'
 //	};
-//	
+//
 //	var contactlist = [person1,person2,person3];
 //
 //	res.json(contactlist);
-	
+
 	db.contacts.find( function (err, docs){
 		console.log(docs);
 		res.json(docs);
 	});
-	
-	
+
+
 });
 
 app.post('/contactlist', function(req,res)
@@ -56,7 +56,7 @@ app.delete('/contactlist/:id', function(req,res)
 	db.contacts.remove({_id: mongojs.ObjectId(id)}, function(err, doc){
 		res.json(doc);
 	})
-	
+
 });
 
 app.get('/contactlist/:id', function(req,res)
@@ -66,7 +66,7 @@ app.get('/contactlist/:id', function(req,res)
 	db.contacts.findOne({_id: mongojs.ObjectId(id)}, function(err, doc){
 		res.json(doc);
 	})
-	
+
 });
 
 app.put('/contactlist/:id', function(req,res)
@@ -78,8 +78,8 @@ app.put('/contactlist/:id', function(req,res)
 							   new: true}, function(err, doc){
 		res.json(doc);
 	})
-	
+
 });
 
-app.listen(3000);
+app.listen(process.env.PORT);
 console.log("Running on port 3000");
